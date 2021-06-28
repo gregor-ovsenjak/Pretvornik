@@ -63,7 +63,12 @@ class Converter {
                     this.element = element2
                     // add final HTML tags that are properly nested to inner HTML of body
                     // works for any number of indentations
-                    this.document.body.innerHTML = this.element.innerHTML
+                    // if statement included because it should append only the last version 
+                    
+                    if (this.level ===0){
+                        this.document.body.innerHTML += this.element.innerHTML
+                    }
+                    
                 }
                 else {
                     // add attributes to the current html element/tag 
@@ -217,4 +222,4 @@ function main(path){
 
 
 
-main(path="./Json/helloWorld.json")
+main(path="./Json/helloWorld2.json")

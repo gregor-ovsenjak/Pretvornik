@@ -30,8 +30,11 @@
 			}
 		},
 		"h1": "Json-Generated HTML page",
+		"h2": "Json-Generated HTML page",
+		"h3": "Json-Generated HTML page",
+		"h4": "Json-Generated HTML page",
 		"p": "Example HTML file generated from JSON.", 
-		"h2": "Imagine smart subtitle here",
+		"h5": "Imagine smart subtitle here",
 		"div":{
 			"attributes" : {
 				"class": "nested"
