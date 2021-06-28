@@ -40,6 +40,12 @@
 				"class": "nested"
 			},
 			"h3": "Nesting supported"
+		},
+		"div1":{
+			"attributes" : {
+				"class": "nested"
+			},
+			"h3": "Nesting supported"
 		}
 	}
 }
