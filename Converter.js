@@ -97,7 +97,7 @@ class Converter {
             
             if (typeof obj[k]=="object"){
                 
-                let string = this.stringifyObject(obj[k]);
+                let string = this.stringifyObject(obj[k],"; ");
                 this.element.setAttribute(k,string);
             }else{
                 
@@ -111,10 +111,10 @@ class Converter {
     /* helper method to stringify the json object and use regex to replace
        string characters
     */
-    stringifyObject(object){
+    stringifyObject(object,character){
         let string = JSON.stringify(object).replace(/"/g,"")
                                            .replace(/[{}]/g,"")
-                                           .replace(/,/g,"; ");
+                                           .replace(/,/g,`${character} `);
         return (string);
     }
 
@@ -126,11 +126,20 @@ class Converter {
 
         let meta = this.parsedJsonData.head.meta ? this.parsedJsonData.head.meta : null;
         if (meta!= null){
+            
             for (var key in meta){
-                let metaTag = this.document.createElement('meta');
-                metaTag.name = key;
-                metaTag.content = typeof meta[key] === 'string' ? meta[key] : this.stringifyObject(meta[key]) ;
-                this.document.head.appendChild(metaTag);
+                if (key == "charset"){
+                    let metaTag = this.document.createElement('meta');
+                    metaTag.setAttribute(key, meta[key])
+                    this.document.head.appendChild(metaTag);
+                }else{
+                    let metaTag = this.document.createElement('meta');
+                    metaTag.name = key;
+                    metaTag.content = typeof meta[key] === 'string' ? meta[key] : this.stringifyObject(meta[key],", ") ;
+                    this.document.head.appendChild(metaTag);
+                }
+                
+                //this.document.head.appendChild(metaTag);
             }
         }else {
             console.log("Meta tags not found.");
